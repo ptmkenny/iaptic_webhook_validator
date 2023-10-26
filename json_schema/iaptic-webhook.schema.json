@@ -1,0 +1,82 @@
+{
+  "$id": "https://www.example.com/iaptic-webhook.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Iaptic webhook notification",
+  "required": ["password", "type", "notification", "applicationUsername", "purchases"],
+  "type": "object",
+  "properties": {
+    "password": {
+      "description": "Your account's Secret Key",
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["purchases.updated"]
+    },
+    "notification": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "Type of trigger event.",
+          "type": "string",
+          "enum": [
+            "RECEIPT_VALIDATED",
+            "RECEIPT_REFRESHED",
+            "WEBHOOK_REPEATED",
+            "ACKNOWLEDGED",
+            "PURCHASED",
+            "REVOKED",
+            "EXPIRED",
+            "RENEWED",
+            "PRICE_CHANGE_CONFIRMED",
+            "WILL_LAPSE",
+            "WILL_AUTO_RENEW",
+            "EXTENDED",
+            "REFUNDED",
+            "PAUSED",
+            "ENTERED_GRACE_PERIOD",
+            "TEST",
+            "OTHER"
+          ]
+        },
+        "id": {
+          "description": "Unique notification identifier.",
+          "type": "string"
+        },
+        "date": {
+          "description": "Notification date",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Product concerned by the event (when applicable)",
+          "type": "string"
+        },
+        "purchaseId": {
+          "description": "Purchase concerned by the event (when applicable)",
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "Transaction concerned by the event (when applicable)",
+          "type": "string"
+        }
+      },
+      "required": ["reason", "id", "date"],
+      "additionalProperties": false
+    },
+    "applicationUsername": {
+      "description": "Identifier of the user in your application",
+      "type": "string"
+    },
+    "purchases": {
+      "description": "A collection of purchases indexed by product identifier.",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "iaptic-purchase.schema.json"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

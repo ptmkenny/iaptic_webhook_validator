@@ -1,0 +1,11 @@
+services:
+  iaptic_webhook_validator.uuid_lookup:
+    class: Drupal\iaptic_webhook_validator\WebhookUuidLookup
+    arguments:
+      [
+        '@entity_type.manager',
+        '@config.factory',
+        '@iaptic_json_schema_validator.validator',
+      ]
+  iaptic_json_schema_validator.validator:
+    class: Drupal\iaptic_webhook_validator\JsonSchemaValidator

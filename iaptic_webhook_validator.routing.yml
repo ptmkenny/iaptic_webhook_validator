@@ -1,0 +1,7 @@
+iaptic_webhook_validator.listener:
+  path: '/iaptic/receipts'
+  defaults:
+    _controller: '\Drupal\iaptic_webhook_validator\Controller\IapticController::listener'
+    _title: 'Iaptic listener'
+  requirements:
+    _custom_access: '\Drupal\iaptic_webhook_validator\Controller\IapticController::access'

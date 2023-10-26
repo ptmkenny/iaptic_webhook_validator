@@ -1,0 +1,9 @@
+name: Iaptic Webhook Validator
+type: module
+description: 'Processes Iaptic webhook responses.'
+package: Custom
+core_version_requirement: ^10 || ^11
+version: 1.0-beta
+
+dependencies:
+  - drupal:json_schema_validator
